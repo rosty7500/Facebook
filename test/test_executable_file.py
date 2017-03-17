@@ -2,12 +2,12 @@ from pages.functions import feature_pages
 
 
 #Login
-
+'''
 def test_login_valid(base_url):
     valid_login = feature_pages(base_url)
     valid_login.accessing_signin_pages_valid()
     print("SUCCESSFULLY SIGNED IN")
-'''
+
 def test_invalid_login(base_url):
     invalid_login = feature_pages(base_url)
     invalid_error = invalid_login.accessing_invalid_login()
@@ -27,3 +27,8 @@ def test_invalid_password_login(base_url):
     if invalid_message == invalid_error_password:
         print("Invalid password")'''
 
+
+def test_multiple_valid_login(base_url):
+    multiple_login = feature_pages(base_url)
+    multiple_login.accessing_multiple_login()
+    print("MULTIPLE LOGIN SUCCESSFULL")

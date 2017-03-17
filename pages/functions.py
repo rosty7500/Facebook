@@ -3,6 +3,11 @@ __author__ = 'admin'
 from selenium import webdriver
 import time
 import os
+import csv
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 from pages.Locators import login_locators
 
 path = os.getcwd()
@@ -50,8 +55,31 @@ class feature_pages(object):
         return self.invalid_password
 
 
+    def accessing_multiple_login(self):
+        with open('login-import-data.csv') as csv_file:
+            readCSV = csv.reader(csv_file, delimiter=',')
+            u = []
+            p = []
+            for row in readCSV:
+                username = row[0]
+                password = row[1]
+                u.append(username)
+                p.append(password)
 
-
+        for i in range(0, len(u)):
+            driver1 = self.driver
+            element = driver1.find_element(*login_locators._email).send_keys(u[i])
+            print (u[i])
+            element1 = driver1.find_element(*login_locators._password).send_keys(p[i])
+            print(p[i])
+            time.sleep(3)
+            driver1.find_element(*login_locators._submit).click()
+            time.sleep(6)
+            driver1.find_element(*login_locators._logout_dropdown).click()
+            time.sleep(5)
+            driver1.find_element(*login_locators._logout).click()
+            i = i + 1
+        driver1.quit()
 
 
 
