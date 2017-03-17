@@ -21,6 +21,8 @@ class feature_pages(object):
         driver1.find_element(*login_locators._password).send_keys("rash02079190!@#$%")
         time.sleep(2)
         driver1.find_element(*login_locators._submit).click()
+        time.sleep(8)
+        driver1.find_element(*login_locators._name_present).is_displayed()
         driver1.quit()
 
     def accessing_invalid_login(self):
